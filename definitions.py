@@ -23,5 +23,5 @@ class KdTreeNode(object):
 
         self.data = dataMatrix
         self.rect = rect
-        self.left, self.right = None
+        self.left, self.right = None, None
         self.split = None
