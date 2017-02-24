@@ -1,20 +1,27 @@
-from buildTree import *
 from readData import *
+from search import *
+from buildTree import *
 
 
 def main(fileName):
 
+    # make the 2-dimensional list into ndarray matrix
     dataMatrix = np.array(readData(fileName))
 
-    minPoint, maxPoint = [0, 0], [10, 10]
-    rootRect = Hyperrctangle(minPoint, maxPoint)
+    # construct kd tree
+    root = buildKdTree(dataMatrix)
 
-    root = KdTreeNode(dataMatrix, rootRect)
+    # give the query
+    query = np.array([8, 3])
 
-    buildKdTree(root)
-    return root
+    # minDis: negative infinity
+    minDis = float("inf")
+
+    # initialize the result as None
+    result = []
+
+    return search(root, query, result, minDis)
 
 
 if __name__ == "__main__":
-    root = main("testData.csv")
-    print(root)
+    print(main("testData.csv"))
